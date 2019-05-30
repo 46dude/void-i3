@@ -6,8 +6,6 @@
 setxkbmap es
 export PAGER="most"
 
-#sudo sh montar.sh
-
 LS_COLORS="*.jpg=33:*.png=33:*.mp4=35:*.avi=35:*.m4v=35:*.mkv=35:*.mpg=35:*.pdf=36:di=34:*.mp3=36:*.flac=36"
 alias ls='ls --color=auto'
 
@@ -35,8 +33,6 @@ alias mkdir="mkdir -pv"
 alias wget="wget -c"
 alias histg="history | grep"
 alias myip="curl http://ipecho.net/plain; echo"
-#alias mount='mount |column -t'
-alias mp3tag='wine .wine/drive_c/Program\ Files/Mp3tag/Mp3tag.exe'
 alias h='history'
 alias treesize='tree --sort=size'
 alias bashrc='nano ~/.bashrc'
@@ -87,13 +83,9 @@ function alien {
 fi
 }
 
-
-
-
 #OPCIONES
 
 shopt -s autocd
-
 
 ## COLOR MANPAGES
 export LESS_TERMCAP_mb=$'\e[1;32m'
