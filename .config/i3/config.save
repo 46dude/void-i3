@@ -1,0 +1,262 @@
+set $border1 border pixel 3
+for_window [class="^.*"] $border1
+set $mod Mod1
+force_display_urgency_hint 0 ms
+focus_on_window_activation urgent
+smart_gaps on
+smart_borders no_gaps
+gaps inner 2
+gaps outer 0
+workspace_auto_back_and_forth yes
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+#font pango:monospace 16
+#font xft:Ubuntu 16
+#font xft:Awesome 18
+font pango:FontAwesome 10
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+#font pango:DejaVu Sans Mono 12
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+#sticky
+bindsym $mod+Ctrl+s sticky toggle
+
+# start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+# kill focused window
+bindsym $mod+Escape kill
+
+# start dmenu (a program launcher)
+bindsym $mod+d exec rofi -show drun -show-icons -drun-display-format {name} -theme android_notification -font "Ubuntu 18"
+bindsym $mod+Tab exec rofi -show window -font "Ubuntu 18"
+
+#locking screen
+bindsym $mod+Ctrl+l exec i3lock -e -f -c 000000
+bindsym $mod+Ctrl+Shift+l exec i3lock-fancy
+
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 " 1:   "
+set $ws2 " 2:   "
+set $ws3 " 3:   "
+set $ws4 " 4:   "
+set $ws5 " 5:   "
+set $ws6 " 6:   "
+set $ws7 " 7:   "
+set $ws8 " 8:   "
+set $ws9 " 9:   "
+set $ws10 " 10:   "
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+bindsym $mod+F9 reload
+bindsym $mod+F10 restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+
+## COLORES QUE GUSTAN A TODOS
+set $highl #6070ff
+set $backg #232c31
+set $textw #fafafa
+set $inact #e84353
+set $activ #c71b2a
+set $urgen #6070ff
+set $grey #686E7A
+
+# class                 border  backgr. text    indicator child_border
+client.focused          $activ  $activ  $backg  $activ  $activ
+client.focused_inactive $highl  $highl  $backg  $highl  $highl
+client.unfocused        $highl  $highl  $backg  $highl  $highl
+client.urgent           $urgen  $urgen  $textw  $urgen  $urgen
+client.placeholder $activ $activ $backg $highl $highl
+
+bar {
+	mode dock
+	hidden_state show
+	output DP-2
+	tray_output DP-2
+	font pango: FontAwesome 25
+	workspace_buttons yes
+	strip_workspace_numbers no
+	height 50
+
+    colors {
+        statusline         $textw
+        background         $backg
+        separator          $highl
+
+#                          BORDER       BACKGROUND      TEXT
+        focused_workspace  $backg       $activ          $textw
+        inactive_workspace $backg       $backg          $textw
+        active_workspace   $activ       $activ          $backg
+        urgent_workspace   $urgen       $urgen          $textw
+
+    }
+}
+
+
+## MODS
+
+## FLOATING WINDOWS
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [class="Steam"] floating enable
+for_window [class="(?i)pavucontrol"] floating enable, move position mouse
+for_window [class="mpv"] floating enable, resize set 3000 px 2000 px, border none, move position 420 px 80 px, sticky enable
+for_window [class="vlc"] floating enable,border none,sticky enable
+for_window [class="Telegram"] border none
+for_window [class="URxvt"] border pixel 3
+for_window [class="Skype"] floating disable
+
+
+## ASIGNACIONES DE CLIENTES
+assign [class="TelegramDesktop"]" 4:   "
+assign [class="qBittorrent"]" 8:   "
+assign [class="Skype"]" 5:   "
+assign [class="Sublime_text"]" 6:   "
+assign [class="Chromium"]" 2:   "
+assign [class="Pcmanfm"]" 3:   "
+assign [class="Rhythmbox"]" 9:   "
+# assig steam to 7
+
+### AUTOSTART
+
+exec --no-startup-id xrdb ~/.Xdefaults &
+exec --no-startup-id feh --bg-scale Imagenes/quasar.jpg
+exec --no-startup-id chromium
+exec --no-startup-id pcmanfm
+exec --no-startup-id subl3
+exec --no-startup-id Telegram
+exec --no-startup-id audacious
+exec --no-startup-id rhythmbox
+# exec steam
+
+hide_edge_borders none
+
+## EXIT
+
+set $logout Opción: (l)ogout  (r)estart  (s)hutdown
+bindsym $mod+F12 mode "$logout"
+mode "$logout" {
+	bindsym l exit
+	bindsym s sudo poweroff
+	bindsym r exec sudo reboot
+	bindsym Escape mode "default"
+}
+
+
+# EXPERIMENTOS
+#bindsym XF86AudioPlay exec cmus-remote -p 
+#bindsym XF86AudioMute

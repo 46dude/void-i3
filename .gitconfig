@@ -1,0 +1,14 @@
+[user]
+	name = pablo
+	email = 46dude@gmail.com
+[core]
+	editor = vim
+[merge]
+	tool = vimdiff
+[color]
+	status = auto
+	branch = auto
+	interactive = auto
+	diff = auto
+[cola]
+	spellcheck = false
